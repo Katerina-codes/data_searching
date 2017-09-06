@@ -13,4 +13,8 @@ class DataSearcher
     @output.puts "Please enter some text. We'll use this to search our records:"
   end
 
+  def get_matching_results(word)
+    @output.puts "No results found."
+  end
+
 end
