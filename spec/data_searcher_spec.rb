@@ -32,4 +32,9 @@ RSpec.describe DataSearcher do
     expect(data_searcher.get_matching_results("B")).to eq([['Jake', 'Jacobson', 'Programmer'], ['Sally', 'Weber', 'Web Developer', '2015-12-18']])
   end
 
+  it "Returns all data records for names that contain letter 'C'" do
+    data_searcher = DataSearcher.new
+    expect(data_searcher.get_matching_results("C")).to eq([['Jake', 'Jacobson', 'Programmer'], ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'], ['Jacquelyn', 'Jackson', 'DBA']])
+  end
+
 end

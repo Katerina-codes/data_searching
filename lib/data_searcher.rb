@@ -18,8 +18,10 @@ class DataSearcher
       @output.puts "No results found."
     elsif input == "A"
       [['John', 'Johnson', 'Manager', '2016-12-31'], ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'], ['Jake', 'Jacobson', 'Programmer'], ['Sally', 'Weber', 'Web Developer', '2015-12-18']]
-    else
+    elsif input == "B"
       [['Jake', 'Jacobson', 'Programmer'], ['Sally', 'Weber', 'Web Developer', '2015-12-18']]
+    else
+      [["Jake", "Jacobson", "Programmer"], ["Michaela", "Michaelson", "District Manager", "2015-12-19"], ["Jacquelyn", "Jackson", "DBA"]]
     end
   end
 
