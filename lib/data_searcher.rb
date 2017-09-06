@@ -17,12 +17,31 @@ class DataSearcher
     if input == "Z"
       @output.puts "No results found."
     elsif input == "A"
-      [['John', 'Johnson', 'Manager', '2016-12-31'], ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'], ['Jake', 'Jacobson', 'Programmer'], ['Sally', 'Weber', 'Web Developer', '2015-12-18']]
+      find_matching_results(input)
     elsif input == "B"
-      [['Jake', 'Jacobson', 'Programmer'], ['Sally', 'Weber', 'Web Developer', '2015-12-18']]
+      find_matching_results(input)
     else
-      [["Jake", "Jacobson", "Programmer"], ["Michaela", "Michaelson", "District Manager", "2015-12-19"], ["Jacquelyn", "Jackson", "DBA"]]
+      find_matching_results(input)
     end
+  end
+
+
+  def find_matching_results(input)
+    results = []
+    data = {
+      "John Johnson" => ['John', 'Johnson', 'Manager', '2016-12-31'],
+      "Tou, Xiong" => ['Tou, Xiong, Software Engineer', '2016-12-31'],
+      "Michaela Michaelson" => ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'],
+      "Jake Jacobson" => ['Jake', 'Jacobson', 'Programmer'],
+      "Jacquelyn Jackson" => ['Jacquelyn', 'Jackson', 'DBA'],
+      "Sally Weber" => ['Sally', 'Weber', 'Web Developer', '2015-12-18'],
+    }
+  data.select do |name, record|
+      if name.include?(input.downcase)
+        results.push(data[name])
+      end
+    end
+    results.sort
   end
 
 end
