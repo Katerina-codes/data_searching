@@ -28,4 +28,10 @@ RSpec.describe DataSearcher do
     expect(output.string).to eq("John, Johnson, Manager, 2016-12-31\nMichaela, Michaelson, District Manager, 2015-12-19\nJake, Jacobson, Programmer\nSally, Weber, Web Developer, 2015-12-18\n")
   end
 
+  it "Returns all data records for names that contain letter 'B'" do
+    data_searcher = DataSearcher.new(output)
+    data_searcher.get_matching_results("B")
+    expect(output.string).to eq("Jake, Jacobson, Programmer\nSally, Weber, Web Developer, 2015-12-18\n")
+  end
+
 end

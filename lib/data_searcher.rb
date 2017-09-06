@@ -14,12 +14,15 @@ class DataSearcher
   end
 
   def get_matching_results(input)
-    if input == 'Z'
+    if input == "Z"
       @output.puts "No results found."
-    else
+    elsif input == "A"
       @output.puts """John, Johnson, Manager, 2016-12-31
 Michaela, Michaelson, District Manager, 2015-12-19
 Jake, Jacobson, Programmer
+Sally, Weber, Web Developer, 2015-12-18"""
+    else
+      @output.puts """Jake, Jacobson, Programmer
 Sally, Weber, Web Developer, 2015-12-18"""
     end
   end
