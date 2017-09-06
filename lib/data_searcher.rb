@@ -4,8 +4,8 @@ class DataSearcher
     @input = input
   end
 
-  def get_word
-    @input.gets.chomp	
+  def get_input
+    @input.gets.chomp
   end
 
 end
