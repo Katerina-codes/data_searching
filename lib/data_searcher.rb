@@ -1,6 +1,15 @@
 class DataSearcher
 
-  def initialize(output = $STDOUT, input = $STDIN)
+  DATA = {
+    "John Johnson" => ['John', 'Johnson', 'Manager', '2016-12-31'],
+    "Tou, Xiong" => ['Tou, Xiong, Software Engineer', '2016-12-31'],
+    "Michaela Michaelson" => ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'],
+    "Jake Jacobson" => ['Jake', 'Jacobson', 'Programmer'],
+    "Jacquelyn Jackson" => ['Jacquelyn', 'Jackson', 'DBA'],
+    "Sally Weber" => ['Sally', 'Weber', 'Web Developer', '2015-12-18'],
+  }
+
+  def initialize(output = $stdout, input = $stdin)
     @output = output
     @input = input
   end
@@ -25,23 +34,20 @@ class DataSearcher
     end
   end
 
-
   def find_matching_results(input)
     results = []
-    data = {
-      "John Johnson" => ['John', 'Johnson', 'Manager', '2016-12-31'],
-      "Tou, Xiong" => ['Tou, Xiong, Software Engineer', '2016-12-31'],
-      "Michaela Michaelson" => ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'],
-      "Jake Jacobson" => ['Jake', 'Jacobson', 'Programmer'],
-      "Jacquelyn Jackson" => ['Jacquelyn', 'Jackson', 'DBA'],
-      "Sally Weber" => ['Sally', 'Weber', 'Web Developer', '2015-12-18'],
-    }
-  data.select do |name, record|
+    DATA.select do |name, record|
       if name.include?(input.downcase)
-        results.push(data[name])
+        results.push(DATA[name])
       end
     end
     results.sort
+  end
+
+  def user_flow
+    ask_user_for_input
+    input = get_input
+    get_matching_results(input)
   end
 
 end
