@@ -44,6 +44,14 @@ class DataSearcher
     results.sort
   end
 
+  def format_results(results)
+    first_name, last_name, role, date = results
+    """
+       Name        |           Role            |  Seperation Date |
+------------------- --------------------------- ------------------
+     #{first_name} #{last_name}     |     #{role}     |    #{date}    |"""
+  end
+
   def user_flow
     ask_user_for_input
     input = get_input

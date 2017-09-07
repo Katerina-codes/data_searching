@@ -37,4 +37,12 @@ RSpec.describe DataSearcher do
     expect(data_searcher.get_matching_results("C")).to eq([['Jacquelyn', 'Jackson', 'DBA'], ['Jake', 'Jacobson', 'Programmer'], ['Michaela', 'Michaelson', 'District Manager', '2015-12-19']])
   end
 
+  it "Formats the data returned for string 'X' into a table" do
+    data_searcher = DataSearcher.new
+    expect(data_searcher.format_results(['Tou', 'Xiong', 'Software Engineer', '2016-10-05'])).to eq("""
+       Name        |           Role            |  Seperation Date |
+------------------- --------------------------- ------------------
+     Tou Xiong     |     Software Engineer     |    2016-10-05    |""")
+  end
+
 end
