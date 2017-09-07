@@ -18,6 +18,15 @@ RSpec.describe UI do
     expect(output.string).to eq("No results found.\n")
   end
 
+  it "Formats the data returned for string 'X' into a table" do
+    ui = UI.new(output)
+    ui.format_results(['Tou', 'Xiong', 'Software Engineer', '2016-10-05'])
+    expect(output.string).to eq("""
+       Name        |           Role            |  Seperation Date |
+------------------- --------------------------- ------------------
+     Tou Xiong     |     Software Engineer     |    2016-10-05    |\n""")
+  end
+
  def create_ui(input = StringIO.new)
     UI.new(output, input)
  end

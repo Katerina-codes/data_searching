@@ -15,4 +15,11 @@ class UI
   def display_no_results_message
     @output.puts "No results found."
   end
+
+  def format_results(results)
+    first_name, last_name, role, date = results
+    @output.puts """\n       Name        |           Role            |  Seperation Date |
+------------------- --------------------------- ------------------
+     #{first_name} #{last_name}     |     #{role}     |    #{date}    |"""
+  end
 end
