@@ -46,8 +46,7 @@ class DataSearcher
 
   def format_results(results)
     first_name, last_name, role, date = results
-    """
-       Name        |           Role            |  Seperation Date |
+    @output.puts """\n       Name        |           Role            |  Seperation Date |
 ------------------- --------------------------- ------------------
      #{first_name} #{last_name}     |     #{role}     |    #{date}    |"""
   end
