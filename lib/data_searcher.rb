@@ -25,10 +25,6 @@ class DataSearcher
   def get_matching_results(input)
     if input == "Z"
       @output.puts "No results found."
-    elsif input == "A"
-      find_matching_results(input)
-    elsif input == "B"
-      find_matching_results(input)
     else
       find_matching_results(input)
     end
