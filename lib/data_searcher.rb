@@ -1,3 +1,5 @@
+require 'ui'
+
 class DataSearcher
 
   DATA = {
@@ -12,19 +14,20 @@ class DataSearcher
   def initialize(output = $stdout, input = $stdin)
     @output = output
     @input = input
+    @ui = UI.new(output, input)
   end
 
   def get_input
-    @input.gets.chomp
+    @ui.get_input
   end
 
   def ask_user_for_input
-    @output.puts "Please enter some text. We'll use this to search our records:"
+    @ui.ask_user_for_input
   end
 
   def get_matching_results(input)
     if input == "Z"
-      @output.puts "No results found."
+      @ui.display_no_results_message
     else
       find_matching_results(input)
     end
