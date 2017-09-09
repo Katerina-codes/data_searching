@@ -23,8 +23,8 @@ class DataSearcher
 
   def get_matching_results(input)
     no_results = []
-    if input == "Z"
-      no_results
+    if find_matching_results(input) == no_results
+      @ui.display_no_results_message
     else
       find_matching_results(input)
     end
