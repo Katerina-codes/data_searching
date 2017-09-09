@@ -1,4 +1,4 @@
-require 'ui'
+require_relative 'ui'
 
 class DataSearcher
 
@@ -11,23 +11,20 @@ class DataSearcher
     "Sally Weber" => ['Sally', 'Weber', 'Web Developer', '2015-12-18'],
   }
 
-  def initialize(output = $stdout, input = $stdin)
-    @output = output
-    @input = input
-    @ui = UI.new(output, input)
+  def initialize(ui)
+    @ui = UI.new
   end
 
-  def get_input
-    @ui.get_input
-  end
-
-  def ask_user_for_input
+  def user_flow
     @ui.ask_user_for_input
+    input = @ui.get_input
+    get_matching_results(input)
   end
 
   def get_matching_results(input)
+    no_results = []
     if input == "Z"
-      @ui.display_no_results_message
+      no_results
     else
       find_matching_results(input)
     end
@@ -41,12 +38,6 @@ class DataSearcher
       end
     end
     results.sort
-  end
-
-  def user_flow
-    ask_user_for_input
-    input = get_input
-    get_matching_results(input)
   end
 
 end
