@@ -17,9 +17,11 @@ class UI
   end
 
   def format_results(results)
-    first_name, last_name, role, date = results
-    @output.puts """\n       Name        |           Role            |  Seperation Date |
-------------------- --------------------------- ------------------
-     #{first_name} #{last_name}     |     #{role}     |    #{date}    |"""
+    @output.puts  """\n       Name        |           Role            |  Seperation Date |
+------------------- --------------------------- ------------------"""
+    results.each do |record|
+      first_name, last_name, role, date = record
+      @output.puts "     #{first_name} #{last_name}     |     #{role}     |    #{date}    |"
+    end
   end
 end
