@@ -4,10 +4,10 @@ class DataSearcher
 
   DATA = {
     "John Johnson" => ['John', 'Johnson', 'Manager', '2016-12-31'],
-    "Tou, Xiong" => ['Tou, Xiong, Software Engineer', '2016-12-31'],
+    "Tou, Xiong" => ['Tou', 'Xiong', 'Software Engineer', '2016-12-31'],
     "Michaela Michaelson" => ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'],
-    "Jake Jacobson" => ['Jake', 'Jacobson', 'Programmer'],
-    "Jacquelyn Jackson" => ['Jacquelyn', 'Jackson', 'DBA'],
+    "Jake Jacobson" => ['Jake', 'Jacobson', 'Programmer', 'N/A'],
+    "Jacquelyn Jackson" => ['Jacquelyn', 'Jackson', 'DBA', 'N/A'],
     "Sally Weber" => ['Sally', 'Weber', 'Web Developer', '2015-12-18'],
   }
 
@@ -18,7 +18,8 @@ class DataSearcher
   def user_flow
     @ui.ask_user_for_input
     input = @ui.get_input
-    get_matching_results(input)
+    results = get_matching_results(input)
+    @ui.format_results(results)
   end
 
   def get_matching_results(input)
