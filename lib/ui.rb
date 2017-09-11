@@ -24,4 +24,8 @@ class UI
         @output.puts "     #{first_name} #{last_name}     |     #{role}     |    #{date}    |"
     end
   end
+
+  def is_input_valid?(input)
+    false
+  end
 end

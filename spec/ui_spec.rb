@@ -27,7 +27,12 @@ RSpec.describe UI do
      Tou Xiong     |     Software Engineer     |    2016-10-05    |\n""")
   end
 
- def create_ui(input = StringIO.new)
+  it "Returns false if user enters '0' " do
+    ui = UI.new(output)
+    expect(ui.is_input_valid?("0")).to eq(false)
+  end
+
+  def create_ui(input = StringIO.new)
     UI.new(output, input)
- end
+  end
 end
