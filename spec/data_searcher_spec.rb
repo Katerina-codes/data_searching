@@ -31,6 +31,11 @@ RSpec.describe DataSearcher do
     expect(data_searcher.get_matching_results("Joh")).to eq([['John', 'Johnson', 'Manager', '2016-12-31']])
   end
 
+  it "Returns an empty array if no results are found' " do
+    data_searcher = get_data_searcher(ui)
+    expect(data_searcher.get_matching_results('z')).to eq([])
+  end
+
   def get_data_searcher(ui = UI.new)
     DataSearcher.new(ui)
   end

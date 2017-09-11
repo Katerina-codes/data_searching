@@ -26,6 +26,7 @@ class DataSearcher
     no_results = []
     if find_matching_results(input) == no_results
       @ui.display_no_results_message
+      no_results
     else
       find_matching_results(input)
     end
