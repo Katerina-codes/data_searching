@@ -26,6 +26,6 @@ class UI
   end
 
   def is_input_valid?(input)
-    false
+    input != 0
   end
 end

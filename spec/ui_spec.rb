@@ -1,5 +1,4 @@
 require 'ui'
-
 RSpec.describe UI do
   let(:output) { StringIO.new }
 
@@ -18,7 +17,7 @@ RSpec.describe UI do
     expect(output.string).to eq("No results found.\n")
   end
 
-  it "Formats the data returned for string 'X' into a table" do
+  it "formats the data returned for string 'X' into a table" do
     ui = UI.new(output)
     ui.format_results([['Tou', 'Xiong', 'Software Engineer', '2016-10-05']])
     expect(output.string).to eq("""
@@ -27,9 +26,14 @@ RSpec.describe UI do
      Tou Xiong     |     Software Engineer     |    2016-10-05    |\n""")
   end
 
-  it "Returns false if user enters '0' " do
+  it "returns false if user enters 0" do
     ui = UI.new(output)
-    expect(ui.is_input_valid?("0")).to eq(false)
+    expect(ui.is_input_valid?(0)).to eq(false)
+  end
+
+  it "returns true if user enters 'a' " do
+    ui = UI.new(output)
+    expect(ui.is_input_valid?("a")).to eq(true)
   end
 
   def create_ui(input = StringIO.new)
