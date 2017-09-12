@@ -27,6 +27,8 @@ class UI
 
   def is_input_valid?(input)
     alphabet = ("a".."z").to_a.join
-    alphabet.include?(input.to_s)
+    input.to_s.split("").all? do |character|
+      alphabet.include?(character)
+    end
   end
 end

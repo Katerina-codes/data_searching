@@ -41,6 +41,11 @@ RSpec.describe UI do
     expect(ui.is_input_valid?("!")).to eq(false)
   end
 
+  it "returns true if user enters multiple letters 'jac' " do
+    ui = UI.new(output)
+    expect(ui.is_input_valid?("jac")).to eq(true)
+  end
+
   def create_ui(input = StringIO.new)
     UI.new(output, input)
   end
