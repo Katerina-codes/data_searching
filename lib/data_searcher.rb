@@ -42,4 +42,7 @@ class DataSearcher
     results.sort
   end
 
+  def get_matching_job(input)
+    []
+  end
 end

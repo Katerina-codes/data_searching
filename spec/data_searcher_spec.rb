@@ -36,6 +36,11 @@ RSpec.describe DataSearcher do
     expect(data_searcher.get_matching_results('z')).to eq([])
   end
 
+  it "Returns an empty array if no job matches input" do
+    data_searcher = get_data_searcher(ui)
+    expect(data_searcher.get_matching_job("z")).to eq([])
+  end
+
   def get_data_searcher(ui = UI.new)
     DataSearcher.new(ui)
   end
