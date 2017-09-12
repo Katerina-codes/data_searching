@@ -9,7 +9,7 @@ class UI
   end
 
   def get_input
-    @input.gets.chomp
+    @input.gets.chomp.downcase
   end
 
   def display_no_results_message
@@ -30,5 +30,14 @@ class UI
     input.to_s.split("").all? do |character|
       alphabet.include?(character)
     end
+  end
+
+  def get_valid_input
+    input = get_input
+    until is_input_valid?(input)
+       ask_user_for_input
+       input = get_input
+    end
+    input
   end
 end

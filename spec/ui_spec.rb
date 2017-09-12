@@ -9,7 +9,7 @@ RSpec.describe UI do
 
   it 'gets input from the user' do
     ui = create_ui(StringIO.new("Z"))
-    expect(ui.get_input).to eq("Z")
+    expect(ui.get_input).to eq("z")
   end
 
   it "displays message when there's no results" do
@@ -44,6 +44,19 @@ RSpec.describe UI do
   it "returns true if user enters multiple letters 'jac' " do
     ui = UI.new(output)
     expect(ui.is_input_valid?("jac")).to eq(true)
+  end
+
+  it "returns a prompt until user enters valid text" do
+    input = StringIO.new("!\na")
+    ui = create_ui(input)
+    ui.get_valid_input
+    expect(output.string).to include("Please enter some text. We'll use this to search our records")
+  end
+
+  it "does not reject input if it's uppercase" do
+    input = StringIO.new("Dan")
+    ui = create_ui(input)
+    expect(ui.get_valid_input).to eq("dan")
   end
 
   def create_ui(input = StringIO.new)
