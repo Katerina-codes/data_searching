@@ -26,6 +26,7 @@ class UI
   end
 
   def is_input_valid?(input)
-    input != 0
+    alphabet = ("a".."z").to_a.join
+    alphabet.include?(input.to_s)
   end
 end

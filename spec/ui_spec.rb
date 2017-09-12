@@ -36,6 +36,11 @@ RSpec.describe UI do
     expect(ui.is_input_valid?("a")).to eq(true)
   end
 
+  it "returns false if user enters '!' " do
+    ui = UI.new(output)
+    expect(ui.is_input_valid?("!")).to eq(false)
+  end
+
   def create_ui(input = StringIO.new)
     UI.new(output, input)
   end
