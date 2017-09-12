@@ -41,6 +41,11 @@ RSpec.describe DataSearcher do
     expect(data_searcher.get_matching_job("z")).to eq([])
   end
 
+  it "Returns all data records for jobs that contain letter 'M' " do
+    data_searcher = get_data_searcher(ui)
+    expect(data_searcher.get_matching_job("M")).to eq([['John', 'Johnson', 'Manager', '2016-12-31'], ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'], ['Jake', 'Jacobson', 'Programmer', 'N/A']])
+  end
+
   def get_data_searcher(ui = UI.new)
     DataSearcher.new(ui)
   end
