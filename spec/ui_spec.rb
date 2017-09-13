@@ -1,4 +1,6 @@
 require 'ui'
+require 'table'
+
 RSpec.describe UI do
   let(:output) { StringIO.new }
 
@@ -26,37 +28,17 @@ RSpec.describe UI do
      Tou Xiong     |     Software Engineer     |    2016-10-05    |\n""")
   end
 
-  it "returns false if user enters 0" do
-    ui = UI.new(output)
-    expect(ui.is_input_valid?(0)).to eq(false)
-  end
-
-  it "returns true if user enters 'a' " do
-    ui = UI.new(output)
-    expect(ui.is_input_valid?("a")).to eq(true)
-  end
-
-  it "returns false if user enters '!' " do
-    ui = UI.new(output)
-    expect(ui.is_input_valid?("!")).to eq(false)
-  end
-
-  it "returns true if user enters multiple letters 'jac' " do
-    ui = UI.new(output)
-    expect(ui.is_input_valid?("jac")).to eq(true)
-  end
-
   it "returns a prompt until user enters valid text" do
     input = StringIO.new("!\na")
     ui = create_ui(input)
-    ui.get_valid_input
+    ui.get_valid_input(Table.new)
     expect(output.string).to include("Please enter some text. We'll use this to search our records")
   end
 
   it "does not reject input if it's uppercase" do
     input = StringIO.new("Dan")
     ui = create_ui(input)
-    expect(ui.get_valid_input).to eq("dan")
+    expect(ui.get_valid_input(Table.new)).to eq("dan")
   end
 
   def create_ui(input = StringIO.new)

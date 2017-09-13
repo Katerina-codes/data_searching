@@ -7,4 +7,19 @@ RSpec.describe Table do
     expect(table.is_input_valid?(0)).to eq(false)
   end
 
+  it "returns true if user enters 'a' " do
+    table = Table.new
+    expect(table.is_input_valid?("a")).to eq(true)
+  end
+
+  it "returns false if user enters '!' " do
+    table = Table.new
+    expect(table.is_input_valid?("!")).to eq(false)
+  end
+
+ it "returns true if user enters multiple letters 'jac' " do
+    table = Table.new
+    expect(table.is_input_valid?("jac")).to eq(true)
+  end
+
 end

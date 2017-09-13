@@ -25,20 +25,13 @@ class UI
     end
   end
 
-  def get_valid_input
+  def get_valid_input(table_instance)
     input = get_input
-    until is_input_valid?(input)
+    until table_instance.is_input_valid?(input)
        ask_user_for_input
        input = get_input
     end
     input
-  end
-
-  def is_input_valid?(input)
-    alphabet = ("a".."z").to_a.join
-    input.to_s.split("").all? do |character|
-      alphabet.include?(character)
-    end
   end
 
 end
