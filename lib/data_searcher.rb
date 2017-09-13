@@ -4,7 +4,7 @@ class DataSearcher
 
   DATA = {
     "john johnson" => ['John', 'Johnson', 'Manager', '2016-12-31'],
-    "tou, xiong" => ['Tou', 'Xiong', 'Software Engineer', '2016-12-31'],
+    "tou xiong" => ['Tou', 'Xiong', 'Software Engineer', '2016-12-31'],
     "michaela michaelson" => ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'],
     "jake jacobson" => ['Jake', 'Jacobson', 'Programmer', 'N/A'],
     "jacquelyn jackson" => ['Jacquelyn', 'Jackson', 'DBA', 'N/A'],
