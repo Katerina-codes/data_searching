@@ -8,7 +8,7 @@ class ProgramManager
   def user_flow
     @ui.ask_user_for_input
     input = @ui.get_valid_input
-    print results = @datasearcher.get_matching_results(input)
+    results = @datasearcher.get_matching_results(input)
     @ui.format_results(results)
   end
 
