@@ -25,13 +25,6 @@ class UI
     end
   end
 
-  def is_input_valid?(input)
-    alphabet = ("a".."z").to_a.join
-    input.to_s.split("").all? do |character|
-      alphabet.include?(character)
-    end
-  end
-
   def get_valid_input
     input = get_input
     until is_input_valid?(input)
@@ -40,4 +33,12 @@ class UI
     end
     input
   end
+
+  def is_input_valid?(input)
+    alphabet = ("a".."z").to_a.join
+    input.to_s.split("").all? do |character|
+      alphabet.include?(character)
+    end
+  end
+
 end
