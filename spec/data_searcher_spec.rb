@@ -13,12 +13,16 @@ RSpec.describe DataSearcher do
 
   it "Returns all data records for names that contain 'ae'" do
     data_searcher = get_data_searcher
-    expect(data_searcher.get_matching_results("ae")).to eq([['Michaela', 'Michaelson', 'District Manager', '2015-12-19']])
+    record = ['Michaela', 'Michaelson']
+    records = { "michaela michaelson" => record }
+    expect(data_searcher.get_matching_results("ae", records)).to eq([record])
   end
 
-  it "still returns results if user enters all lower case" do
+  it "Still returns results if user enters a mix of cases" do
     data_searcher = get_data_searcher
-    expect(data_searcher.get_matching_results("Joh")).to eq([['John', 'Johnson', 'Manager', '2016-12-31']])
+    record = ['John', 'Johnson']
+    records = { "john johnson" => record }
+    expect(data_searcher.get_matching_results("Joh", records)).to eq([record])
   end
 
   it "Returns an empty array if no results are found' " do
