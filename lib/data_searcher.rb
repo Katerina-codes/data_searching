@@ -1,5 +1,3 @@
-require_relative 'ui'
-
 class DataSearcher
 
   DATA = {
@@ -11,21 +9,9 @@ class DataSearcher
     "sally weber" => ['Sally', 'Weber', 'Web Developer', '2015-12-18'],
   }
 
-  def initialize(ui)
-    @ui = UI.new
-  end
-
-  def user_flow
-    @ui.ask_user_for_input
-    input = @ui.get_valid_input
-    results = get_matching_results(input)
-    @ui.format_results(results)
-  end
-
   def get_matching_results(input)
     no_results = []
     if find_matching_results(input) == no_results
-      @ui.display_no_results_message
       no_results
     else
       find_matching_results(input)
