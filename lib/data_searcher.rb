@@ -27,13 +27,4 @@ class DataSearcher
     end
     results.sort
   end
-
-  def get_matching_job(input)
-    if input == "z"
-      []
-    else
-      [['John', 'Johnson', 'Manager', '2016-12-31'], ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'], ['Jake', 'Jacobson', 'Programmer', 'N/A']]
-    end
-  end
-
 end
