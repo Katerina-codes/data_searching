@@ -4,19 +4,11 @@ RSpec.describe DataSearcher do
 
   let(:output) { StringIO.new }
 
-  it "Returns all data records for names that contain letter 'A'" do
+  it "Returns all data records for names that contain letter" do
     data_searcher = get_data_searcher
-    expect(data_searcher.get_matching_results("A")).to eq([['Jacquelyn', 'Jackson', 'DBA', 'N/A'], ['Jake', 'Jacobson', 'Programmer', 'N/A'], ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'], ['Sally', 'Weber', 'Web Developer', '2015-12-18']])
-  end
-
-  it "Returns all data records for names that contain letter 'B'" do
-    data_searcher = get_data_searcher
-    expect(data_searcher.get_matching_results("B")).to eq([['Jake', 'Jacobson', 'Programmer', 'N/A'], ['Sally', 'Weber', 'Web Developer', '2015-12-18']])
-  end
-
-  it "Returns all data records for names that contain letter 'C'" do
-    data_searcher = get_data_searcher
-    expect(data_searcher.get_matching_results("C")).to eq([['Jacquelyn', 'Jackson', 'DBA', 'N/A'], ['Jake', 'Jacobson', 'Programmer', 'N/A'], ['Michaela', 'Michaelson', 'District Manager', '2015-12-19']])
+    record = ['annie', 'lennox']
+    records = { "annie lennox" => record }
+    expect(data_searcher.get_matching_results("a", records)).to eq([record])
   end
 
   it "Returns all data records for names that contain 'ae'" do
@@ -37,4 +29,5 @@ RSpec.describe DataSearcher do
   def get_data_searcher
     DataSearcher.new
   end
+
 end
