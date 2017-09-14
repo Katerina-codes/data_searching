@@ -9,20 +9,22 @@ class DataSearcher
     "sally weber" => ['Sally', 'Weber', 'Web Developer', '2015-12-18'],
   }
 
-  def get_matching_results(input)
+  def get_matching_results(input, data = DATA)
     no_results = []
-    if find_matching_results(input) == no_results
+    if find_matching_results(input, data) == no_results
       no_results
     else
-      find_matching_results(input)
+      find_matching_results(input, data)
     end
   end
 
-  def find_matching_results(input)
+  private
+
+  def find_matching_results(input, data)
     results = []
-    DATA.select do |name, record|
+    data.select do |name, record|
       if name.include?(input.downcase)
-        results.push(DATA[name])
+        results.push(data[name])
       end
     end
     results.sort
