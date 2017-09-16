@@ -1,6 +1,6 @@
 class ProgramManager
 
-  def initialize(ui = UI.new, datasearcher = DataSearcher.new, table = Table.new)
+  def initialize(ui, datasearcher, table)
     @ui = ui
     @datasearcher = datasearcher
     @table = table

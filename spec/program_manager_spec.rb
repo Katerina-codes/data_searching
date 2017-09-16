@@ -5,9 +5,10 @@ require 'data_searcher'
 RSpec.describe ProgramManager do
 
   let(:ui) { double() }
+  let(:table) { double() }
 
   it "ProgramManager checks user flow" do
-    program_manager = ProgramManager.new(ui, DataSearcher.new)
+	  program_manager = ProgramManager.new(ui, DataSearcher.new, table)
     expect(ui).to receive(:ask_user_for_input)
     expect(ui).to receive(:get_valid_input).and_return("x")
     expect(ui).to receive(:format_results)
