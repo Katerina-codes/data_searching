@@ -4,30 +4,39 @@ RSpec.describe DataSearcher do
 
   let(:output) { StringIO.new }
 
-  it "Returns all data records for names that contain letter" do
+  it "Returns all data records if first name contains letter" do
     data_searcher = get_data_searcher
-    record = ['annie', 'lennox']
-    records = { "annie lennox" => record }
+    record = { :first_name => 'annie' }
+    records = [record]
     expect(data_searcher.get_matching_results("a", records)).to eq([record])
   end
 
-  it "Returns all data records for names that contain 'ae'" do
+  it "Returns all data records if last name contains letter" do
     data_searcher = get_data_searcher
-    record = ['Michaela', 'Michaelson']
-    records = { "michaela michaelson" => record }
+    record = { :first_name => 'annie', :last_name => 'lennox' }
+    records = [record]
+    expect(data_searcher.get_matching_results("a", records)).to eq([record])
+  end
+
+  it "Returns all data records if first name contains 'ae'" do
+    data_searcher = get_data_searcher
+    record = { :first_name => 'michaela' }
+    records = [record]
     expect(data_searcher.get_matching_results("ae", records)).to eq([record])
   end
 
   it "Still returns results if user enters a mix of cases" do
     data_searcher = get_data_searcher
-    record = ['John', 'Johnson']
-    records = { "john johnson" => record }
+    record = { :first_name => 'john', :last_name => 'johnson' }
+    records = [record]
     expect(data_searcher.get_matching_results("Joh", records)).to eq([record])
   end
 
-  it "Returns an empty array if no results are found' " do
+  it "Returns an empty array if no matching results are found in first or last name" do
     data_searcher = get_data_searcher
-    expect(data_searcher.get_matching_results('z')).to eq([])
+    record = { :first_name => 'annie', :last_name => 'lennox' }
+    records = [record]
+    expect(data_searcher.get_matching_results('z', records)).to eq([])
   end
 
   def get_data_searcher

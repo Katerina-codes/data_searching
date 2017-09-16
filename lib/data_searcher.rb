@@ -1,13 +1,10 @@
 class DataSearcher
 
-  DATA = {
-    "john johnson" => ['John', 'Johnson', 'Manager', '2016-12-31'],
-    "tou xiong" => ['Tou', 'Xiong', 'Software Engineer', '2016-12-31'],
-    "michaela michaelson" => ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'],
-    "jake jacobson" => ['Jake', 'Jacobson', 'Programmer', 'N/A'],
-    "jacquelyn jackson" => ['Jacquelyn', 'Jackson', 'DBA', 'N/A'],
-    "sally weber" => ['Sally', 'Weber', 'Web Developer', '2015-12-18'],
-  }
+  DATA = [{:first_name => 'jacquelyn', :last_name => 'jackson', :role => 'DBA', :date => 'N/A'},
+    {:first_name => 'jake', :last_name => 'jacobson', :role => 'Programmer', :date => 'N/A'},
+    {:first_name => 'john', :last_name => 'johnson', :role => 'manager', :date => '2016-12-31'},
+    {:first_name => 'michaela', :last_name => 'michaelson', :role => 'District Manager', :date => '2015-12-19'},
+    {:first_name => 'tou', :last_name => 'xiong', :role => 'Software Engineer', :date => '2016-10-05'}]
 
   def get_matching_results(input, records = DATA)
     no_results = []
@@ -21,12 +18,8 @@ class DataSearcher
   private
 
   def find_matching_results(input, records)
-    results = []
-    records.select do |name, record|
-      if name.include?(input.downcase)
-        results.push(records[name])
-      end
-    end
-    results.sort
+    records.select do |record|
+      record[:first_name].include?(input.downcase) || record[:last_name].include?(input.downcase)
+    end.sort
   end
 end

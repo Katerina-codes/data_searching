@@ -21,7 +21,7 @@ RSpec.describe UI do
 
   it "formats the data returned for string 'X' into a table" do
     ui = UI.new(output)
-    ui.format_results([['Tou', 'Xiong', 'Software Engineer', '2016-10-05']])
+    ui.format_results([{ :first_name => 'Tou', :last_name => 'Xiong', :role => 'Software Engineer', :date => '2016-10-05' }])
     expect(output.string).to eq("""
             Name            |            Role            |            Seperation Date            |
 ---------------------------- ---------------------------- ---------------------------------------

@@ -17,11 +17,10 @@ class UI
   end
 
   def format_results(results)
-      @output.puts  """\n            Name            |            Role            |            Seperation Date            |
+      @output.puts """\n            Name            |            Role            |            Seperation Date            |
 ---------------------------- ---------------------------- ---------------------------------------"""
-      results.each do |record|
-        first_name, last_name, role, date = record
-        @output.puts "     #{first_name} #{last_name}     |     #{role}     |    #{date}    |"
+    results.each do |record|
+	      @output.puts "     #{record[:first_name].capitalize} #{record[:last_name].capitalize}     |     #{record[:role].split(" ").map do |word| word.capitalize end.join(" ")}     |    #{record[:date]}    |"
     end
   end
 

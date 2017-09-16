@@ -4,16 +4,14 @@ require 'data_searcher'
 
 RSpec.describe ProgramManager do
 
-  it "Returns a list of records that match user search" do
-    input = StringIO.new("x")
-    output = StringIO.new
-    program_manager = ProgramManager.new(UI.new(output, input), DataSearcher.new)
-    program_manager.user_flow
-    output.string
-    expect(output.string).to include(
-"""            Name            |            Role            |            Seperation Date            |
----------------------------- ---------------------------- ---------------------------------------
-     Tou Xiong     |     Software Engineer     |    2016-12-31    |\n""")
-  end
+  let(:ui) { double() }
 
+  it "ProgramManager checks user flow" do
+    program_manager = ProgramManager.new(ui, DataSearcher.new)
+    expect(ui).to receive(:ask_user_for_input)
+    expect(ui).to receive(:get_valid_input).and_return("x")
+    expect(ui).to receive(:format_results)
+
+    program_manager.user_flow
+  end
 end
