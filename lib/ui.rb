@@ -33,4 +33,12 @@ class UI
     input
   end
 
+  def ask_search_type
+    @output.puts "Please enter 'name' to search by name or 'role' to search by role:\n"
+  end
+
+  def get_search_type
+    @input.gets.chomp
+  end
+
 end
