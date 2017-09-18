@@ -7,10 +7,10 @@ class ProgramManager
   end
 
   def user_flow
-    search_type = @ui.get_search_type
+    search_criteria = @ui.get_search_criteria
     @ui.ask_user_for_input
     input = @ui.get_valid_input(@table)
-    results = @datasearcher.get_matching_results(input, search_type)
+    results = @datasearcher.get_matching_results(search_criteria, input)
     @ui.format_results(results)
   end
 

@@ -46,10 +46,26 @@ RSpec.describe UI do
     expect(output.string).to eq("Please enter 'name' to search by name or 'role' to search by role:\n")
   end
 
-  it "get search type from the user" do
-    input = StringIO.new("name")
+  it "gets input for search by name" do
+    input = StringIO.new("1\nalice")
     ui = create_ui(input)
-    expect(ui.get_search_type).to eq("name")
+    search_criteria = {
+      search_type: "name",
+      search_value: "alice"
+    }
+
+    expect(ui.get_search_criteria).to eq(search_criteria)
+  end
+
+  it "gets input for search by role" do
+    input = StringIO.new("2\nSinger")
+    ui = create_ui(input)
+    search_criteria = {
+      search_type: "role",
+      search_value: "Singer"
+    }
+
+    expect(ui.get_search_criteria).to eq(search_criteria)
   end
 
   def create_ui(input = StringIO.new)

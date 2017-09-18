@@ -1,11 +1,28 @@
 class UI
+  SEARCH_TYPES = {
+    "1" => "name",
+    "2" => "role"
+  }
+
   def initialize(output = $stdout, input = $stdin)
     @output = output
     @input = input
   end
 
+  def get_search_criteria
+    search_type = get_user_input
+    search_value = get_user_input
+
+    { search_type: SEARCH_TYPES[search_type],
+      search_value: search_value }
+  end
+
   def ask_user_for_input
     @output.puts "Please enter some text. We'll use this to search our records:"
+  end
+
+  def get_user_input
+    @input.gets.chomp
   end
 
   def get_input
@@ -40,5 +57,4 @@ class UI
   def get_search_type
     @input.gets.chomp
   end
-
 end
