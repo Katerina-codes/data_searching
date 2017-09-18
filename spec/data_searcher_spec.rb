@@ -49,10 +49,18 @@ RSpec.describe DataSearcher do
 
   it "Returns an empty array if no matching results are found in role" do
     data_searcher = get_data_searcher
-    record = { :first_name => 'annie', :last_name => 'Lennox', :role => 'Singer' }
+    record = { :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }
     search_criteria = { search_type: "role", search_value: "a" }
 
     expect(data_searcher.get_matching_results(search_criteria, [record])).to eq([])
+  end
+
+  it "Returns a result if there's a role match" do
+    data_searcher = get_data_searcher
+    record = { :first_name => 'michaela', :last_name => 'michaelson', :role => 'district manager' }
+    search_criteria = { search_type: "role", search_value: "D" }
+
+    expect(data_searcher.get_matching_results(search_criteria, [record])).to eq([record])
   end
 
   def get_data_searcher
