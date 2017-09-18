@@ -8,20 +8,25 @@ class DataSearcher
 
   def get_matching_results(search_criteria, records = DATA)
     no_results = []
-    input = search_criteria[:search_value]
-    if find_matching_results(input, records) == no_results
+    if find_matching_results(search_criteria, records) == no_results
       no_results
     else
-      find_matching_results(input, records)
+      find_matching_results(search_criteria, records)
     end
   end
 
   private
 
-  def find_matching_results(input, records)
-    records.select do |record|
-      record[:first_name].include?(input.downcase) || record[:last_name].include?(input.downcase)
-    end.sort
+  def find_matching_results(search_criteria, records)
+    input = search_criteria[:search_value]
+    if search_criteria[:search_type] == "name"
+      records.select do |record|
+        record[:first_name].include?(input.downcase) || record[:last_name].include?(input.downcase)
+      end.sort
+    else
+      records.select do |record|
+        record[:role].include?(input.downcase)
+      end.sort
+    end
   end
-
 end

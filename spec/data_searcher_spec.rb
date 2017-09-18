@@ -52,7 +52,7 @@ RSpec.describe DataSearcher do
     record = { :first_name => 'annie', :last_name => 'Lennox', :role => 'Singer' }
     search_criteria = { search_type: "role", search_value: "a" }
 
-    expect(data_searcher.get_matching_results(search_criteria, [record]))
+    expect(data_searcher.get_matching_results(search_criteria, [record])).to eq([])
   end
 
   def get_data_searcher
