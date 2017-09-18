@@ -22,4 +22,9 @@ RSpec.describe Table do
     expect(table.is_input_valid?("jac")).to eq(true)
   end
 
+  it "returns true if user enters 1" do
+    table = Table.new
+    expect(table.search_type_valid?("1")).to eq(true)
+  end
+
 end

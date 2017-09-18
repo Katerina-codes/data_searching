@@ -51,12 +51,13 @@ class UI
   end
 
   def get_valid_search_type(table_instance)
-    input = get_user_input
-    if input == "a"
-      "Please enter '1' to search by name or '2' to search by role:\n"
-    else
-      1
+    ask_search_type
+    input = get_user_input.to_i
+    until table_instance.search_type_valid?(input)
+      ask_search_type
+      input = get_user_input.to_i
     end
+    input
   end
 
   def ask_search_type

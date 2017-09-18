@@ -7,4 +7,7 @@ class Table
     end
   end
 
+  def search_type_valid?(search_type)
+    true
+  end
 end
