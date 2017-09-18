@@ -71,6 +71,14 @@ RSpec.describe DataSearcher do
     expect(data_searcher.get_matching_results(search_criteria, records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }, { :first_name => 'bob', :last_name => 'marley', :role => 'singer' }])
   end
 
+  it "Returns and sorts multiple records for a role match" do
+    data_searcher = get_data_searcher
+    records = [{ :first_name => 'bob', :last_name => 'marley', :role => 'singer' }, { :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }]
+    search_criteria = { search_type: "role", search_value: "s" }
+
+    expect(data_searcher.get_matching_results(search_criteria, records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }, { :first_name => 'bob', :last_name => 'marley', :role => 'singer' }])
+  end
+
   def get_data_searcher
     DataSearcher.new
   end

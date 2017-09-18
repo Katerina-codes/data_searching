@@ -23,11 +23,11 @@ class DataSearcher
       matching_records = records.select do |record|
         record[:first_name].include?(input.downcase) || record[:last_name].include?(input.downcase)
       end
-      matching_records.sort_by { |key, value| key[:first_name] }
     else
-      records.select do |record|
+      matching_records = records.select do |record|
         record[:role].include?(input.downcase)
-      end.sort
+      end
     end
+    matching_records.sort_by { |key, value| key[:first_name] }
   end
 end
