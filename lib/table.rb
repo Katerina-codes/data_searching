@@ -8,6 +8,6 @@ class Table
   end
 
   def search_type_valid?(search_type)
-    true
+    search_type == 1 || search_type == 2
   end
 end

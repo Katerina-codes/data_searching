@@ -69,10 +69,10 @@ RSpec.describe UI do
   end
 
   it "reject's invalid search type input" do
-    input = StringIO.new("a")
+    input = StringIO.new("a\n1")
     ui = create_ui(input)
     ui.get_valid_search_type(Table.new)
-    expect(output.string).to eq("Please enter '1' to search by name or '2' to search by role:\n")
+    expect(output.string).to include("Please enter '1' to search by name or '2' to search by role:\n")
   end
 
   it "returns a valid search type" do
