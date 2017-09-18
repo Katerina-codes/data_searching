@@ -29,7 +29,7 @@ RSpec.describe UI do
   end
 
   it "returns a prompt until user enters valid text" do
-    input = StringIO.new("!\na")
+    input = StringIO.new("1\n!\na")
     ui = create_ui(input)
     ui.get_search_criteria(Table.new)
     expect(output.string).to include("Please enter some text. We'll use this to search our records")
