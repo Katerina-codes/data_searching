@@ -9,10 +9,9 @@ class UI
     @input = input
   end
 
-  def get_search_criteria
+  def get_search_criteria(table_instance)
     search_type = get_user_input
-    search_value = get_user_input
-
+    search_value = get_valid_input(table_instance)
     { search_type: SEARCH_TYPES[search_type],
       search_value: search_value }
   end
@@ -42,6 +41,7 @@ class UI
   end
 
   def get_valid_input(table_instance)
+    ask_user_for_input
     input = get_input
     until table_instance.is_input_valid?(input)
        ask_user_for_input

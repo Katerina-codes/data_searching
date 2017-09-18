@@ -31,7 +31,7 @@ RSpec.describe UI do
   it "returns a prompt until user enters valid text" do
     input = StringIO.new("!\na")
     ui = create_ui(input)
-    ui.get_valid_input(Table.new)
+    ui.get_search_criteria(Table.new)
     expect(output.string).to include("Please enter some text. We'll use this to search our records")
   end
 
@@ -54,7 +54,7 @@ RSpec.describe UI do
       search_value: "alice"
     }
 
-    expect(ui.get_search_criteria).to eq(search_criteria)
+    expect(ui.get_search_criteria(Table.new)).to eq(search_criteria)
   end
 
   it "gets input for search by role" do
@@ -62,10 +62,10 @@ RSpec.describe UI do
     ui = create_ui(input)
     search_criteria = {
       search_type: "role",
-      search_value: "Singer"
+      search_value: "singer"
     }
 
-    expect(ui.get_search_criteria).to eq(search_criteria)
+    expect(ui.get_search_criteria(Table.new)).to eq(search_criteria)
   end
 
   def create_ui(input = StringIO.new)
