@@ -20,9 +20,10 @@ class DataSearcher
   def find_matching_results(search_criteria, records)
     input = search_criteria[:search_value]
     if search_criteria[:search_type] == "name"
-      records.select do |record|
+      matching_records = records.select do |record|
         record[:first_name].include?(input.downcase) || record[:last_name].include?(input.downcase)
-      end.sort
+      end
+      matching_records.sort_by { |key, value| key[:first_name] }
     else
       records.select do |record|
         record[:role].include?(input.downcase)
