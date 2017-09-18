@@ -43,7 +43,7 @@ RSpec.describe UI do
 
   it "asks the user for a search type" do
     create_ui.ask_search_type
-    expect(output.string).to eq("Please enter 'name' to search by name or 'role' to search by role:\n")
+    expect(output.string).to eq("Please enter '1' to search by name or '2' to search by role:\n")
   end
 
   it "gets input for search by name" do
