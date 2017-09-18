@@ -1,6 +1,7 @@
 require 'program_manager'
 require 'ui'
 require 'data_searcher'
+require 'table'
 
 RSpec.describe ProgramManager do
 
@@ -18,6 +19,18 @@ RSpec.describe ProgramManager do
     expect(ui).to receive(:get_search_criteria)
 
     program_manager.user_flow
+  end
+
+  it "goes through the whole flow" do
+    input = StringIO.new("1\nx")
+    output = StringIO.new
+    ui_with_input = UI.new(output, input)
+    program_manager = ProgramManager.new(ui_with_input, DataSearcher.new, Table.new)
+
+    program_manager.user_flow
+
+    expect(output.string).to include("Name")
+    expect(output.string).to include("2016-10-05")
   end
 
 end

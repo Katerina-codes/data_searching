@@ -6,8 +6,9 @@ class DataSearcher
     {:first_name => 'michaela', :last_name => 'michaelson', :role => 'District Manager', :date => '2015-12-19'},
     {:first_name => 'tou', :last_name => 'xiong', :role => 'Software Engineer', :date => '2016-10-05'}]
 
-  def get_matching_results(search_criteria, input, records = DATA)
+  def get_matching_results(search_criteria, records = DATA)
     no_results = []
+    input = search_criteria[:search_value]
     if find_matching_results(input, records) == no_results
       no_results
     else
