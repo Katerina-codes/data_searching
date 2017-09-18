@@ -74,6 +74,12 @@ RSpec.describe UI do
     expect(ui.get_valid_search_type(Table.new)).to eq("Please enter '1' to search by name or '2' to search by role:\n")
   end
 
+  it "returns a valid search type" do
+    input = StringIO.new("1")
+    ui = create_ui(input)
+    expect(ui.get_valid_search_type(Table.new)).to eq(1)
+  end
+
   def create_ui(input = StringIO.new)
     UI.new(output, input)
   end
