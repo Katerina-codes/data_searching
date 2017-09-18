@@ -1,7 +1,7 @@
 class UI
   SEARCH_TYPES = {
-    "1" => "name",
-    "2" => "role"
+    1 => "name",
+    2 => "role"
   }
 
   def initialize(output = $stdout, input = $stdin)
@@ -10,7 +10,7 @@ class UI
   end
 
   def get_search_criteria(table_instance)
-    search_type = get_user_input
+    search_type = get_valid_search_type(table_instance)
     search_value = get_valid_input(table_instance)
     { search_type: SEARCH_TYPES[search_type],
       search_value: search_value }
