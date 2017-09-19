@@ -4,6 +4,7 @@ class DataSearcher
     {:first_name => 'jake', :last_name => 'jacobson', :role => 'programmer', :date => 'N/A'},
     {:first_name => 'john', :last_name => 'johnson', :role => 'manager', :date => '2016-12-31'},
     {:first_name => 'michaela', :last_name => 'michaelson', :role => 'district manager', :date => '2015-12-19'},
+    {:first_name => 'sally', :last_name => 'weber', :role => 'web developer', :date => '2015-12-18'},
     {:first_name => 'tou', :last_name => 'xiong', :role => 'software engineer', :date => '2016-10-05'}]
 
   def get_matching_results(search_criteria, records = DATA)
