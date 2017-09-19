@@ -85,6 +85,12 @@ RSpec.describe DataSearcher do
     expect(data_searcher.access_records).to include("2016-10-05")
   end
 
+  it "dynamically creates a hash with each line of data" do
+    data_searcher = get_data_searcher
+    records = "annie, lennox, singer, N/A"
+    expect(data_searcher.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }])
+  end
+
   def get_data_searcher
     DataSearcher.new
   end

@@ -22,6 +22,10 @@ class DataSearcher
     records.read
   end
 
+  def create_data_hash(records)
+    [{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }]
+  end
+
   private
 
   def find_matching_results(search_criteria, records)
