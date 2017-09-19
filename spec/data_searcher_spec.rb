@@ -79,6 +79,12 @@ RSpec.describe DataSearcher do
     expect(data_searcher.get_matching_results(search_criteria, records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }, { :first_name => 'bob', :last_name => 'marley', :role => 'singer' }])
   end
 
+  it "reads the first line of data from a file" do
+    data_searcher = get_data_searcher
+    expect(data_searcher.access_records).to include("jacquelyn")
+    expect(data_searcher.access_records).to include("2016-10-05")
+  end
+
   def get_data_searcher
     DataSearcher.new
   end
