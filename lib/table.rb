@@ -7,4 +7,7 @@ class Table
     end
   end
 
+  def search_type_valid?(search_type)
+    search_type == 1 || search_type == 2
+  end
 end

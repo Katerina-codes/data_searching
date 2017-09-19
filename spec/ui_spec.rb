@@ -21,7 +21,7 @@ RSpec.describe UI do
 
   it "formats the data returned for string 'X' into a table" do
     ui = UI.new(output)
-    ui.format_results([['Tou', 'Xiong', 'Software Engineer', '2016-10-05']])
+    ui.format_results([{ :first_name => 'Tou', :last_name => 'Xiong', :role => 'Software Engineer', :date => '2016-10-05' }])
     expect(output.string).to eq("""
             Name            |            Role            |            Seperation Date            |
 ---------------------------- ---------------------------- ---------------------------------------
@@ -29,9 +29,9 @@ RSpec.describe UI do
   end
 
   it "returns a prompt until user enters valid text" do
-    input = StringIO.new("!\na")
+    input = StringIO.new("1\n!\na")
     ui = create_ui(input)
-    ui.get_valid_input(Table.new)
+    ui.get_search_criteria(Table.new)
     expect(output.string).to include("Please enter some text. We'll use this to search our records")
   end
 
@@ -39,6 +39,52 @@ RSpec.describe UI do
     input = StringIO.new("Dan")
     ui = create_ui(input)
     expect(ui.get_valid_input(Table.new)).to eq("dan")
+  end
+
+  it "asks the user for a search type" do
+    create_ui.ask_search_type
+    expect(output.string).to eq("Please enter '1' to search by name or '2' to search by role:\n")
+  end
+
+  it "gets input for search by name" do
+    input = StringIO.new("1\nalice")
+    ui = create_ui(input)
+    search_criteria = {
+      search_type: "name",
+      search_value: "alice"
+    }
+
+    expect(ui.get_search_criteria(Table.new)).to eq(search_criteria)
+  end
+
+  it "gets input for search by role" do
+    input = StringIO.new("2\nSinger")
+    ui = create_ui(input)
+    search_criteria = {
+      search_type: "role",
+      search_value: "singer"
+    }
+
+    expect(ui.get_search_criteria(Table.new)).to eq(search_criteria)
+  end
+
+  it "reject's invalid search type input" do
+    input = StringIO.new("a\n1")
+    ui = create_ui(input)
+    ui.get_valid_search_type(Table.new)
+    expect(output.string).to include("Please enter '1' to search by name or '2' to search by role:\n")
+  end
+
+  it "returns a valid search type" do
+    input = StringIO.new("1")
+    ui = create_ui(input)
+    expect(ui.get_valid_search_type(Table.new)).to eq(1)
+  end
+
+  it "returns a valid search type if it's 2" do
+    input = StringIO.new("2")
+    ui = create_ui(input)
+    expect(ui.get_valid_search_type(Table.new)).to eq(2)
   end
 
   def create_ui(input = StringIO.new)

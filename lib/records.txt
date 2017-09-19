@@ -1,0 +1,6 @@
+jacquelyn, jackson, dba, N/A
+jake, jacobson, programmer, N/A
+john, johnson, manager, 2016-12-31
+michaela, michaelson, district manager, 2015-12-19
+sally, weber, web developer, 2014-12-18
+tou, xiong, software engineer, 2016-10-05

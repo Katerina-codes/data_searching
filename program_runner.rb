@@ -1,7 +1,7 @@
 require_relative 'lib/program_manager'
 require_relative 'lib/data_searcher'
 require_relative 'lib/ui'
+require_relative 'lib/table'
 
-ui_instance = UI.new
-new_search = ProgramManager.new(ui_instance, DataSearcher.new(ui_instance))
+new_search = ProgramManager.new(UI.new, DataSearcher.new, Table.new)
 new_search.user_flow

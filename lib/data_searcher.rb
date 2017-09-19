@@ -1,32 +1,27 @@
 class DataSearcher
 
-  DATA = {
-    "john johnson" => ['John', 'Johnson', 'Manager', '2016-12-31'],
-    "tou xiong" => ['Tou', 'Xiong', 'Software Engineer', '2016-12-31'],
-    "michaela michaelson" => ['Michaela', 'Michaelson', 'District Manager', '2015-12-19'],
-    "jake jacobson" => ['Jake', 'Jacobson', 'Programmer', 'N/A'],
-    "jacquelyn jackson" => ['Jacquelyn', 'Jackson', 'DBA', 'N/A'],
-    "sally weber" => ['Sally', 'Weber', 'Web Developer', '2015-12-18'],
-  }
-
-  def get_matching_results(input, records = DATA)
+  def get_matching_results(search_criteria, records)
     no_results = []
-    if find_matching_results(input, records) == no_results
+    if find_matching_results(search_criteria, records) == no_results
       no_results
     else
-      find_matching_results(input, records)
+      find_matching_results(search_criteria, records)
     end
   end
 
   private
 
-  def find_matching_results(input, records)
-    results = []
-    records.select do |name, record|
-      if name.include?(input.downcase)
-        results.push(records[name])
+  def find_matching_results(search_criteria, records)
+    input = search_criteria[:search_value]
+    if search_criteria[:search_type] == "name"
+      matching_records = records.select do |record|
+        record[:first_name].include?(input.downcase) || record[:last_name].include?(input.downcase)
+      end
+    else
+      matching_records = records.select do |record|
+        record[:role].include?(input.downcase)
       end
     end
-    results.sort
+    matching_records.sort_by { |key, value| key[:first_name] }
   end
 end
