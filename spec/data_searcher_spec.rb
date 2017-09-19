@@ -87,14 +87,20 @@ RSpec.describe DataSearcher do
 
   it "dynamically creates a hash with one line of data" do
     data_searcher = get_data_searcher
-    records = "annie, lennox, singer, N/A"
-    expect(data_searcher.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }])
+    records = "annie,lennox,singer,N/A"
+    expect(data_searcher.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer', :date => 'N/A' }])
   end
 
   it "dynamically creates a hash with two lines of data" do
     data_searcher = get_data_searcher
-    records = "annie, lennox, singer, N/A\nbob, marley, singer, N/A"
-    expect(data_searcher.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }, { :first_name => 'bob', :last_name => 'marley', :role => 'singer' }])
+    records = "annie,lennox,singer,N/A\nbob,marley,singer,N/A"
+    expect(data_searcher.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer', :date => 'N/A' }, { :first_name => 'bob', :last_name => 'marley', :role => 'singer', :date => 'N/A' }])
+  end
+
+  it "dynamically creates a hash with three lines of data" do
+    data_searcher = get_data_searcher
+    records = "annie,lennox,singer,N/A\nbob,marley,singer,N/A\ncraig,david,superstar,N/A"
+    expect(data_searcher.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer', :date => 'N/A' }, { :first_name => 'bob', :last_name => 'marley', :role => 'singer', :date => 'N/A' }, { :first_name => 'craig', :last_name => 'david', :role => 'superstar', :date => 'N/A' }] )
   end
 
   def get_data_searcher
