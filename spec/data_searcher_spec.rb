@@ -79,16 +79,22 @@ RSpec.describe DataSearcher do
     expect(data_searcher.get_matching_results(search_criteria, records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }, { :first_name => 'bob', :last_name => 'marley', :role => 'singer' }])
   end
 
-  it "reads the first line of data from a file" do
+  it "reads in all records from a file" do
     data_searcher = get_data_searcher
     expect(data_searcher.access_records).to include("jacquelyn")
     expect(data_searcher.access_records).to include("2016-10-05")
   end
 
-  it "dynamically creates a hash with each line of data" do
+  it "dynamically creates a hash with one line of data" do
     data_searcher = get_data_searcher
     records = "annie, lennox, singer, N/A"
     expect(data_searcher.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }])
+  end
+
+  it "dynamically creates a hash with two lines of data" do
+    data_searcher = get_data_searcher
+    records = "annie, lennox, singer, N/A\nbob, marley, singer, N/A"
+    expect(data_searcher.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }, { :first_name => 'bob', :last_name => 'marley', :role => 'singer' }])
   end
 
   def get_data_searcher

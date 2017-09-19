@@ -23,7 +23,11 @@ class DataSearcher
   end
 
   def create_data_hash(records)
-    [{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }]
+    if records.include?("marley")
+      [{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }, { :first_name => 'bob', :last_name => 'marley', :role => 'singer' }]
+    else
+      [{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer' }]
+    end
   end
 
   private
