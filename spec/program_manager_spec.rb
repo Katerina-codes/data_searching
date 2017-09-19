@@ -33,4 +33,28 @@ RSpec.describe ProgramManager do
     expect(output.string).to include("2016-10-05")
   end
 
+  it "reads in all records from a file" do
+    program_manager = ProgramManager.new(UI.new, DataSearcher.new, Table.new)
+    expect(program_manager.access_records).to include("jacquelyn")
+    expect(program_manager.access_records).to include("2016-10-05")
+  end
+
+  it "dynamically creates a hash with one line of data" do
+    program_manager = ProgramManager.new(UI.new, DataSearcher.new, Table.new)
+    records = "annie,lennox,singer,N/A"
+    expect(program_manager.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer', :date => 'N/A' }])
+  end
+
+  it "dynamically creates a hash with two lines of data" do
+    program_manager = ProgramManager.new(UI.new, DataSearcher.new, Table.new)
+    records = "annie,lennox,singer,N/A\nbob,marley,singer,N/A"
+    expect(program_manager.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer', :date => 'N/A' }, { :first_name => 'bob', :last_name => 'marley', :role => 'singer', :date => 'N/A' }])
+  end
+
+  it "dynamically creates a hash with three lines of data" do
+    program_manager = ProgramManager.new(UI.new, DataSearcher.new, Table.new)
+    records = "annie,lennox,singer,N/A\nbob,marley,singer,N/A\ncraig,david,superstar,N/A"
+    expect(program_manager.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer', :date => 'N/A' }, { :first_name => 'bob', :last_name => 'marley', :role => 'singer', :date => 'N/A' }, { :first_name => 'craig', :last_name => 'david', :role => 'superstar', :date => 'N/A' }] )
+  end
+
 end
