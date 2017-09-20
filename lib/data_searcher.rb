@@ -1,12 +1,7 @@
 class DataSearcher
 
   def get_matching_results(search_criteria, records)
-    no_results = []
-    if find_matching_results(search_criteria, records) == no_results
-      no_results
-    else
-      find_matching_results(search_criteria, records)
-    end
+    find_matching_results(search_criteria, records)
   end
 
   private
