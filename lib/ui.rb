@@ -16,6 +16,10 @@ class UI
       search_value: search_value }
   end
 
+  def ask_user_intention
+    @output.puts "Please enter '1' to search the records and '2' to add a record"
+  end
+
   def get_user_record
     not_applicable = "N/A"
     ask_for_first_name

@@ -119,6 +119,11 @@ RSpec.describe UI do
     expect(ui.get_user_record).to eq("lady, gaga, singer, N/A")
   end
 
+  it "asks user if they want to search or to add a record" do
+    create_ui.ask_user_intention
+    expect(output.string).to eq("Please enter '1' to search the records and '2' to add a record\n")
+  end
+
   def create_ui(input = StringIO.new)
     UI.new(output, input)
   end
