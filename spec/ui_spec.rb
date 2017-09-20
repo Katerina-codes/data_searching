@@ -97,6 +97,10 @@ RSpec.describe UI do
     expect(output.string).to eq("Please enter your last name:\n")
   end
 
+  it "asks for user's role" do
+    create_ui.ask_for_role
+    expect(output.string).to eq("Please enter your role:\n")
+  end
 
   def create_ui(input = StringIO.new)
     UI.new(output, input)
