@@ -107,6 +107,12 @@ RSpec.describe UI do
     expect(output.string).to eq("Please enter your separation date if applicable\n")
   end
 
+  it "gets user input and returns a user record" do
+    input = StringIO.new("lady\ngaga\nsinger\n0")
+    ui = create_ui(input)
+    expect(ui.get_user_record).to eq("lady, gaga, singer, 0")
+  end
+
   def create_ui(input = StringIO.new)
     UI.new(output, input)
   end

@@ -16,6 +16,18 @@ class UI
       search_value: search_value }
   end
 
+  def get_user_record
+    ask_for_first_name
+    first_name = get_user_input
+    ask_for_last_name
+    last_name = get_user_input
+    ask_for_role
+    role = get_user_input
+    ask_for_separation_date
+    separation_date = get_user_input
+    "#{first_name}, #{last_name}, #{role}, #{separation_date}"
+  end
+
   def ask_user_for_input
     @output.puts "Please enter some text. We'll use this to search our records:"
   end
