@@ -27,8 +27,13 @@ RSpec.describe Table do
     expect(table.search_type_valid?(1)).to eq(true)
   end
 
-  it "returns false if user enters neither 1 or 2" do
+  it "returns false if user enters neither 1, 2 or 3" do
     table = Table.new
     expect(table.search_type_valid?("a")).to eq(false)
+  end
+
+  it "returns true if user enters 3" do
+    table = Table.new
+    expect(table.search_type_valid?(3)).to eq(true)
   end
 end
