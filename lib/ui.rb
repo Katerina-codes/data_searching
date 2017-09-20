@@ -64,6 +64,10 @@ class UI
     @output.puts "Please enter '1' to search by name or '2' to search by role or '3' to add a record:\n"
   end
 
+  def ask_for_first_name
+    @output.puts "Please enter your first name:"
+  end
+
   def get_search_type
     @input.gets.chomp
   end

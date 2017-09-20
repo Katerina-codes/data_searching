@@ -87,6 +87,11 @@ RSpec.describe UI do
     expect(ui.get_valid_search_type(Table.new)).to eq(2)
   end
 
+  it "asks for user's first name" do
+    create_ui.ask_for_first_name
+    expect(output.string).to eq("Please enter your first name:\n")
+  end
+
   def create_ui(input = StringIO.new)
     UI.new(output, input)
   end
