@@ -102,6 +102,11 @@ RSpec.describe UI do
     expect(output.string).to eq("Please enter your role:\n")
   end
 
+  it "asks for user's separation date" do
+    create_ui.ask_for_separation_date
+    expect(output.string).to eq("Please enter your separation date if applicable\n")
+  end
+
   def create_ui(input = StringIO.new)
     UI.new(output, input)
   end

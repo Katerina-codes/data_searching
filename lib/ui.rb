@@ -76,7 +76,7 @@ class UI
     @output.puts "Please enter your role:"
   end
 
-  def get_search_type
-    @input.gets.chomp
+  def ask_for_separation_date
+    @output.puts "Please enter your separation date if applicable"
   end
 end
