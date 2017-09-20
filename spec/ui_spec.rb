@@ -108,9 +108,15 @@ RSpec.describe UI do
   end
 
   it "gets user input and returns a user record" do
+    input = StringIO.new("lady\ngaga\nsinger\nN/A")
+    ui = create_ui(input)
+    expect(ui.get_user_record).to eq("lady, gaga, singer, N/A")
+  end
+
+  it "returns 'N/A' if user enters 0" do
     input = StringIO.new("lady\ngaga\nsinger\n0")
     ui = create_ui(input)
-    expect(ui.get_user_record).to eq("lady, gaga, singer, 0")
+    expect(ui.get_user_record).to eq("lady, gaga, singer, N/A")
   end
 
   def create_ui(input = StringIO.new)

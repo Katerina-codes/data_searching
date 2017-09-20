@@ -17,6 +17,7 @@ class UI
   end
 
   def get_user_record
+    not_applicable = "N/A"
     ask_for_first_name
     first_name = get_user_input
     ask_for_last_name
@@ -24,8 +25,8 @@ class UI
     ask_for_role
     role = get_user_input
     ask_for_separation_date
-    separation_date = get_user_input
-    "#{first_name}, #{last_name}, #{role}, #{separation_date}"
+    separation_date = get_user_input.to_i
+    "#{first_name}, #{last_name}, #{role}, #{separation_date == 0 ? not_applicable : separation_date }"
   end
 
   def ask_user_for_input
