@@ -92,6 +92,12 @@ RSpec.describe UI do
     expect(output.string).to eq("Please enter your first name:\n")
   end
 
+  it "asks for user's second name" do
+    create_ui.ask_for_last_name
+    expect(output.string).to eq("Please enter your last name:\n")
+  end
+
+
   def create_ui(input = StringIO.new)
     UI.new(output, input)
   end

@@ -68,6 +68,10 @@ class UI
     @output.puts "Please enter your first name:"
   end
 
+  def ask_for_last_name
+    @output.puts "Please enter your last name:"
+  end
+
   def get_search_type
     @input.gets.chomp
   end
