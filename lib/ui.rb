@@ -74,7 +74,7 @@ class UI
   end
 
   def ask_search_type
-    @output.puts "Please enter '1' to search by name or '2' to search by role or '3' to add a record:\n"
+    @output.puts "Please enter '1' to search by name or '2' to search by role:\n"
   end
 
   def ask_for_first_name
