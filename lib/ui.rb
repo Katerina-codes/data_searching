@@ -53,12 +53,16 @@ class UI
       @output.puts """\n            Name            |            Role            |            Seperation Date            |
 ---------------------------- ---------------------------- ---------------------------------------"""
     results.each do |record|
-	      @output.puts "     #{capitalize_data(record[:first_name])} #{capitalize_data(record[:last_name])}     |     #{record[:role].split(" ").map do |word| word.capitalize end.join(" ")}     |    #{record[:date]}    |"
+	      @output.puts "     #{capitalize_data(record[:first_name])} #{capitalize_data(record[:last_name])}     |     #{capitalize_each_word(record[:role])}     |    #{record[:date]}    |"
     end
   end
 
-  def capitalize_data(data)
-    data.capitalize
+  def capitalize_data(name_string)
+    name_string.capitalize
+  end
+
+  def capitalize_each_word(string)
+    string.split(" ").map do |word| word.capitalize end.join(" ")
   end
 
   def get_valid_input(table_instance)
