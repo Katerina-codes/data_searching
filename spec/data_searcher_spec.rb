@@ -6,7 +6,7 @@ RSpec.describe DataSearcher do
 
   it "Returns all data records if first name contains letter" do
     data_searcher = get_data_searcher
-    record = { :first_name => 'annie' }
+    record = { :first_name => 'annie', :last_name => 'lennox' }
     records = [record]
     search_criteria = { search_type: "name", search_value: "a" }
     expect(data_searcher.get_matching_results(search_criteria, records)).to eq([record])
@@ -22,7 +22,7 @@ RSpec.describe DataSearcher do
 
   it "Returns all data records if first name contains 'ae'" do
     data_searcher = get_data_searcher
-    record = { :first_name => 'michaela' }
+    record = { :first_name => 'michaela', :last_name => 'michaelson' }
     records = [record]
     search_criteria = { search_type: "name", search_value: "ae" }
 
