@@ -13,6 +13,7 @@ RSpec.describe ProgramManager do
 
   it "User provides the search criteria" do
     program_manager = ProgramManager.new(ui, data_searcher, table, record_manager)
+    allow(ui).to receive(:ask_user_intention)
     allow(ui).to receive(:ask_user_for_input)
     allow(record_manager).to receive(:access_records)
     allow(record_manager).to receive(:create_data_hash)
@@ -35,5 +36,18 @@ RSpec.describe ProgramManager do
 
     expect(output.string).to include("Name")
     expect(output.string).to include("2016-10-05")
+  end
+
+  it "asks the user for their intention" do
+    program_manager = ProgramManager.new(ui, data_searcher, table, record_manager)
+    allow(ui).to receive(:get_search_criteria)
+    allow(record_manager).to receive(:access_records)
+    allow(record_manager).to receive(:create_data_hash)
+    allow(data_searcher).to receive(:get_matching_results)
+    allow(ui).to receive(:format_results)
+
+    expect(ui).to receive(:ask_user_intention)
+
+    program_manager.user_flow
   end
 end
