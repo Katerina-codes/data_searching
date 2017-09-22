@@ -9,6 +9,10 @@ class UI
     @input = input
   end
 
+  def get_user_intention
+    @input.gets.chomp.to_i
+  end
+
   def get_search_criteria(table_instance)
     search_type = get_valid_search_type(table_instance)
     search_value = get_valid_input(table_instance)

@@ -124,6 +124,12 @@ RSpec.describe UI do
     expect(output.string).to eq("Please enter '1' to search the records and '2' to add a record\n")
   end
 
+  it "gets user intent to add a record" do
+    input = StringIO.new("1")
+    ui = create_ui(input)
+    expect(ui.get_user_intention).to eq(1)
+  end
+
   def create_ui(input = StringIO.new)
     UI.new(output, input)
   end
