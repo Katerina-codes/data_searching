@@ -38,15 +38,6 @@ RSpec.describe ProgramManager do
     expect(output.string).to include("2016-10-05")
   end
 
-  it "goes through whole flow if user adds a record" do
-    input = StringIO.new("2\nannie\nlennox\nsinger\n0")
-    output = StringIO.new
-    ui_with_input = UI.new(output, input)
-    program_manager = ProgramManager.new(ui_with_input, DataSearcher.new, Table.new, RecordManager.new)
-
-    expect(program_manager.user_flow).to eq("annie, lennox, singer, N/A")
-  end
-
   it "asks the user for their intention" do
     program_manager = ProgramManager.new(ui, data_searcher, table, record_manager)
     allow(ui).to receive(:get_search_criteria)
@@ -59,4 +50,16 @@ RSpec.describe ProgramManager do
 
     program_manager.user_flow
   end
+
+  it "adds a new record to the records file" do
+    program_manager = ProgramManager.new(ui, data_searcher, table, record_manager)
+    allow(ui).to receive(:get_user_intention)
+    allow(ui).to receive(:get_search_criteria)
+    allow(ui).to receive(:get_user_record)
+
+    expect(record_manager).to receive(:write_to_records)
+
+    program_manager.user_flow
+  end
+
 end
