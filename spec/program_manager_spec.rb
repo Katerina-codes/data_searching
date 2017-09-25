@@ -13,7 +13,7 @@ RSpec.describe ProgramManager do
 
   it "User provides the search criteria" do
     program_manager = ProgramManager.new(ui, data_searcher, table, record_manager)
-    allow(ui).to receive(:ask_user_intention)
+    allow(ui).to receive(:get_user_intention)
     allow(ui).to receive(:ask_user_for_input)
     allow(record_manager).to receive(:access_records)
     allow(record_manager).to receive(:create_data_hash)
@@ -27,7 +27,7 @@ RSpec.describe ProgramManager do
   end
 
   it "goes through the whole flow" do
-    input = StringIO.new("1\nx")
+    input = StringIO.new("1\n1\nx")
     output = StringIO.new
     ui_with_input = UI.new(output, input)
     program_manager = ProgramManager.new(ui_with_input, DataSearcher.new, Table.new, RecordManager.new)
@@ -46,7 +46,7 @@ RSpec.describe ProgramManager do
     allow(data_searcher).to receive(:get_matching_results)
     allow(ui).to receive(:format_results)
 
-    expect(ui).to receive(:ask_user_intention)
+    expect(ui).to receive(:get_user_intention)
 
     program_manager.user_flow
   end

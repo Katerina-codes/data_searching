@@ -8,7 +8,7 @@ class ProgramManager
   end
 
   def user_flow
-    @ui.ask_user_intention
+    @ui.get_user_intention(@ui)
     search_criteria = @ui.get_search_criteria(@table)
     records = @record_manager.access_records
     record_data = @record_manager.create_data_hash(records)

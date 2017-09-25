@@ -9,13 +9,10 @@ class UI
     @input = input
   end
 
-  def get_user_intention
-    input = get_user_input
-    if input == "1" || input == "2"
-      input
-    else
-      ask_user_intention
-    end
+  def get_user_intention(ui_instance)
+    table = Table.new
+    ask_user_intention
+    table.get_user_intention(ui_instance)
   end
 
   def get_search_criteria(table_instance)

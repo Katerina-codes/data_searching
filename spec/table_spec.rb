@@ -1,4 +1,5 @@
 require 'table'
+require 'ui'
 
 RSpec.describe Table do
 
@@ -36,4 +37,22 @@ RSpec.describe Table do
     table = Table.new
     expect(table.search_type_valid?(3)).to eq(true)
   end
+
+  it "displays prompt message again if input is invalid" do
+    input = StringIO.new("3\n1")
+    output = StringIO.new
+    table = Table.new
+    ui_instance = UI.new(output, input)
+    table.get_user_intention(ui_instance)
+    expect(output.string).to include("Please enter '1' to search the records and '2' to add a record\n")
+  end
+
+  it "displays prompt message until input is valid" do
+    input = StringIO.new("a\n2")
+    output = StringIO.new
+    table = Table.new
+    ui_instance = UI.new(output, input)
+    expect(table.get_user_intention(ui_instance)).to eq("2")
+  end
+
 end
