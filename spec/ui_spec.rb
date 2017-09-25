@@ -125,9 +125,9 @@ RSpec.describe UI do
   end
 
   it "gets user intent to add a record" do
-    input = StringIO.new("1")
+    input = StringIO.new("2")
     ui = create_ui(input)
-    expect(ui.get_user_intention).to eq(1)
+    expect(ui.get_user_intention).to eq(2)
   end
 
   it "displays prompt message again if input is invalid" do

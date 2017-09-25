@@ -10,8 +10,8 @@ class UI
   end
 
   def get_user_intention
-    if get_user_input.to_i == 1
-      1
+    if get_user_input.to_i == 2
+      2
     else
       ask_user_intention
     end
