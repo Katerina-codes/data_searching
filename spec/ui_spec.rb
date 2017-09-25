@@ -130,6 +130,13 @@ RSpec.describe UI do
     expect(ui.get_user_intention).to eq(1)
   end
 
+  it "displays prompt message again if input is invalid" do
+    input = StringIO.new("3")
+    ui = create_ui(input)
+    ui.get_user_intention
+    expect(output.string).to eq("Please enter '1' to search the records and '2' to add a record\n")
+  end
+
   def create_ui(input = StringIO.new)
     UI.new(output, input)
   end

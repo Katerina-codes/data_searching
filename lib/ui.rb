@@ -10,7 +10,11 @@ class UI
   end
 
   def get_user_intention
-    get_user_input.to_i
+    if get_user_input.to_i == 1
+      1
+    else
+      ask_user_intention
+    end
   end
 
   def get_search_criteria(table_instance)
