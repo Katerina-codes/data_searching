@@ -10,7 +10,7 @@ class UI
   end
 
   def get_user_intention
-    @input.gets.chomp.to_i
+    get_user_input.to_i
   end
 
   def get_search_criteria(table_instance)
