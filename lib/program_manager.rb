@@ -15,7 +15,8 @@ class ProgramManager
       results = @data_searcher.get_matching_results(search_criteria, record_data)
      @ui.format_results(results)
     else
-      results = @ui.get_user_record
+      @ui.get_user_record
     end
   end
+
 end
