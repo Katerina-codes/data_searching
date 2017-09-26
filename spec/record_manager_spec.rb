@@ -25,4 +25,13 @@ RSpec.describe RecordManager do
     records = "annie,lennox,singer,N/A\nbob,marley,singer,N/A\ncraig,david,superstar,N/A"
     expect(record_manager.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer', :date => 'N/A' }, { :first_name => 'bob', :last_name => 'marley', :role => 'singer', :date => 'N/A' }, { :first_name => 'craig', :last_name => 'david', :role => 'superstar', :date => 'N/A' }] )
   end
+
+  it "writes a record to a file" do
+    record_manager = RecordManager.new
+    user_record = "annie, lennox, singer, N/A"
+
+    record_manager.write_to_records(user_record)
+
+    expect(record_manager.access_records).to include("annie")
+  end
 end

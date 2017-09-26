@@ -9,11 +9,34 @@ class UI
     @input = input
   end
 
+  def get_user_intention(ui_instance)
+    table = Table.new
+    ask_user_intention
+    table.get_user_intention(ui_instance)
+  end
+
   def get_search_criteria(table_instance)
     search_type = get_valid_search_type(table_instance)
     search_value = get_valid_input(table_instance)
     { search_type: SEARCH_TYPES[search_type],
       search_value: search_value }
+  end
+
+  def ask_user_intention
+    @output.puts "Please enter '1' to search the records and '2' to add a record"
+  end
+
+  def get_user_record
+    not_applicable = "N/A"
+    ask_for_first_name
+    first_name = get_user_input
+    ask_for_last_name
+    last_name = get_user_input
+    ask_for_role
+    role = get_user_input
+    ask_for_separation_date
+    separation_date = get_user_input.to_i
+    "#{first_name}, #{last_name}, #{role}, #{separation_date == 0 ? not_applicable : separation_date }"
   end
 
   def ask_user_for_input
@@ -36,8 +59,16 @@ class UI
       @output.puts """\n            Name            |            Role            |            Seperation Date            |
 ---------------------------- ---------------------------- ---------------------------------------"""
     results.each do |record|
-	      @output.puts "     #{record[:first_name].capitalize} #{record[:last_name].capitalize}     |     #{record[:role].split(" ").map do |word| word.capitalize end.join(" ")}     |    #{record[:date]}    |"
+	      @output.puts "     #{capitalize_data(record[:first_name])} #{capitalize_data(record[:last_name])}     |     #{capitalize_each_word(record[:role])}     |    #{record[:date]}    |"
     end
+  end
+
+  def capitalize_data(name_string)
+    name_string.capitalize
+  end
+
+  def capitalize_each_word(string)
+    string.split(" ").map do |word| word.capitalize end.join(" ")
   end
 
   def get_valid_input(table_instance)
@@ -64,7 +95,19 @@ class UI
     @output.puts "Please enter '1' to search by name or '2' to search by role:\n"
   end
 
-  def get_search_type
-    @input.gets.chomp
+  def ask_for_first_name
+    @output.puts "Please enter your first name:"
+  end
+
+  def ask_for_last_name
+    @output.puts "Please enter your last name:"
+  end
+
+  def ask_for_role
+    @output.puts "Please enter your role:"
+  end
+
+  def ask_for_separation_date
+    @output.puts "Please enter your separation date if applicable"
   end
 end

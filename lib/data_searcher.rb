@@ -10,13 +10,18 @@ class DataSearcher
     input = search_criteria[:search_value]
     if search_criteria[:search_type] == "name"
       matching_records = records.select do |record|
-        record[:first_name].include?(input.downcase) || record[:last_name].include?(input.downcase)
+        full_name = record[:first_name] + record[:last_name]
+        field_includes_input?(full_name, input)
       end
     else
       matching_records = records.select do |record|
-        record[:role].include?(input.downcase)
+        field_includes_input?(record[:role], input)
       end
     end
     matching_records.sort_by { |key, value| key[:first_name] }
+  end
+
+  def field_includes_input?(field, input)
+    field.include?(input.downcase)
   end
 end

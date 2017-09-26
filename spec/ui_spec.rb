@@ -87,6 +87,55 @@ RSpec.describe UI do
     expect(ui.get_valid_search_type(Table.new)).to eq(2)
   end
 
+  it "asks for user's first name" do
+    create_ui.ask_for_first_name
+    expect(output.string).to eq("Please enter your first name:\n")
+  end
+
+  it "asks for user's second name" do
+    create_ui.ask_for_last_name
+    expect(output.string).to eq("Please enter your last name:\n")
+  end
+
+  it "asks for user's role" do
+    create_ui.ask_for_role
+    expect(output.string).to eq("Please enter your role:\n")
+  end
+
+  it "asks for user's separation date" do
+    create_ui.ask_for_separation_date
+    expect(output.string).to eq("Please enter your separation date if applicable\n")
+  end
+
+  it "gets user input and returns a user record" do
+    input = StringIO.new("lady\ngaga\nsinger\nN/A")
+    ui = create_ui(input)
+    expect(ui.get_user_record).to eq("lady, gaga, singer, N/A")
+  end
+
+  it "returns 'N/A' if user enters 0" do
+    input = StringIO.new("lady\ngaga\nsinger\n0")
+    ui = create_ui(input)
+    expect(ui.get_user_record).to eq("lady, gaga, singer, N/A")
+  end
+
+  it "asks user if they want to search or to add a record" do
+    create_ui.ask_user_intention
+    expect(output.string).to eq("Please enter '1' to search the records and '2' to add a record\n")
+  end
+
+  it "gets user intent to add a record" do
+    input = StringIO.new("2")
+    ui = create_ui(input)
+    expect(ui.get_user_intention(ui)).to eq("2")
+  end
+
+  it "gets user intent to search records" do
+    input = StringIO.new("1")
+    ui = create_ui(input)
+    expect(ui.get_user_intention(ui)).to eq("1")
+  end
+
   def create_ui(input = StringIO.new)
     UI.new(output, input)
   end
