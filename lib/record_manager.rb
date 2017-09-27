@@ -1,15 +1,17 @@
 class RecordManager
 
+  def initialize(file = 'lib/records.txt')
+    @file = file
+  end
+
   def access_records
-    file = 'lib/records.txt'
-    records = File.open(file, "r")
+    records =	File.open(@file, 'r')
     records.read
   end
 
-  def write_to_records(user_record)
-    file = 'lib/records.txt'
-    open_file = File.open(file, "a")
-    open_file.puts user_record
+  def write_to_records(record)
+    file = File.open(@file, 'a')
+    file.puts record
   end
 
   def create_data_hash(records)
