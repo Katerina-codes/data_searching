@@ -11,12 +11,14 @@ class RecordManager
 
   def write_to_records(record)
     file = File.open(@file, 'a')
-    file.puts record
+    file.puts(record)
   end
+
+  private
 
   def create_data_hash(records)
     records.split("\n").map do |record|
-      record = record.split(",")
+      record = record.split(',')
       {
         first_name: record[0],
         last_name: record[1],
