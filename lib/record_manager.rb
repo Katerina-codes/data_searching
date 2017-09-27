@@ -1,11 +1,11 @@
 class RecordManager
 
-  def initialize(file = 'lib/records.txt')
+  def initialize(file)
     @file = file
   end
 
   def access_records
-    records =	File.open(@file, 'r')
+    records = File.open(@file, 'r')
     create_data_hash(records.read)
   end
 
