@@ -2,12 +2,6 @@ require 'record_manager'
 
 RSpec.describe RecordManager do
 
-  it 'dynamically creates a hash with one line of data' do
-    record_manager = RecordManager.new
-    records = 'annie,lennox,singer,N/A'
-    expect(record_manager.create_data_hash(records)).to eq([{ :first_name => 'annie', :last_name => 'lennox', :role => 'singer', :date => 'N/A' }])
-  end
-
   it 'dynamically creates a hash with two lines of data' do
     record_manager = RecordManager.new
     records = "annie,lennox,singer,N/A\nbob,marley,singer,N/A"
@@ -38,6 +32,21 @@ RSpec.describe RecordManager do
       record_manager.access_records
 
       expect(file_spy).to have_received(:read)
+    end
+
+    it 'formats one result' do
+      file_content = 'annie,lennox,singer,N/A'
+      record = [{
+        first_name: 'annie',
+        last_name: 'lennox',
+        role: 'singer',
+        date: 'N/A'
+      }]
+
+      allow(file_spy).to receive(:read).and_return(file_content)
+      allow(File).to receive(:open).and_return(file_spy)
+
+      expect(record_manager.access_records).to eq(record)
     end
 
   end

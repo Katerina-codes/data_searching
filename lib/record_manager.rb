@@ -6,7 +6,7 @@ class RecordManager
 
   def access_records
     records =	File.open(@file, 'r')
-    records.read
+    create_data_hash(records.read)
   end
 
   def write_to_records(record)
