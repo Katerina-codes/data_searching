@@ -30,12 +30,12 @@ RSpec.describe ProgramManager do
     input = StringIO.new("1\n1\nx")
     output = StringIO.new
     ui_with_input = UI.new(output, input)
-    program_manager = ProgramManager.new(ui_with_input, DataSearcher.new, Table.new, RecordManager.new)
+		program_manager = ProgramManager.new(ui_with_input, DataSearcher.new, Table.new, RecordManager.new('spec/test_file.txt'))
 
     program_manager.user_flow
 
-    expect(output.string).to include("Name")
-    expect(output.string).to include("2016-10-05")
+    expect(output.string).to include("Annie")
+    expect(output.string).to include("Lennox")
   end
 
   it "asks the user for their intention" do
