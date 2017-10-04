@@ -1,7 +1,7 @@
 class UI
   SEARCH_TYPES = {
-    1 => "name",
-    2 => "role"
+    1 => 'name',
+    2 => 'role'
   }
 
   def initialize(output = $stdout, input = $stdin)
@@ -27,7 +27,7 @@ class UI
   end
 
   def get_user_record
-    not_applicable = "N/A"
+    not_applicable = 'N/A'
     ask_for_first_name
     first_name = get_user_input
     ask_for_last_name
@@ -52,14 +52,14 @@ class UI
   end
 
   def display_no_results_message
-    @output.puts "No results found."
+    @output.puts 'No results found.'
   end
 
   def format_results(results)
-      @output.puts """\n            Name            |            Role            |            Seperation Date            |
+    @output.puts """\n            Name            |            Role            |            Seperation Date            |
 ---------------------------- ---------------------------- ---------------------------------------"""
     results.each do |record|
-	      @output.puts "     #{capitalize_data(record[:first_name])} #{capitalize_data(record[:last_name])}     |     #{capitalize_each_word(record[:role])}     |    #{record[:date]}    |"
+      @output.puts "     #{capitalize_data(record[:first_name])} #{capitalize_data(record[:last_name])}     |     #{capitalize_each_word(record[:role])}     |    #{record[:date]}    |"
     end
   end
 
@@ -68,15 +68,15 @@ class UI
   end
 
   def capitalize_each_word(string)
-    string.split(" ").map do |word| word.capitalize end.join(" ")
+    string.split(' ').map do |word| word.capitalize end.join(' ')
   end
 
   def get_valid_input(table_instance)
     ask_user_for_input
     input = get_input
     until table_instance.is_input_valid?(input)
-       ask_user_for_input
-       input = get_input
+      ask_user_for_input
+      input = get_input
     end
     input
   end
@@ -96,18 +96,18 @@ class UI
   end
 
   def ask_for_first_name
-    @output.puts "Please enter your first name:"
+    @output.puts 'Please enter your first name:'
   end
 
   def ask_for_last_name
-    @output.puts "Please enter your last name:"
+    @output.puts 'Please enter your last name:'
   end
 
   def ask_for_role
-    @output.puts "Please enter your role:"
+    @output.puts 'Please enter your role:'
   end
 
   def ask_for_separation_date
-    @output.puts "Please enter your separation date if applicable"
+    @output.puts 'Please enter your separation date if applicable'
   end
 end
