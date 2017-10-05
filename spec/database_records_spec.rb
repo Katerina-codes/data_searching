@@ -3,11 +3,31 @@ require 'sequel'
 
 RSpec.describe DatabaseRecords do
 
+  let(:database_records) { DatabaseRecords.new(Sequel.connect('mysql2://test-user:coolbeans@localhost:3306/test_database')) }
+
+  before(:each) do
+    database_records.delete_all_records
+  end
+
   it "returns empty list when there is no records" do
     DB = Sequel.connect('mysql2://test-user:coolbeans@localhost:3306/test_database')
-    database_records = DatabaseRecords.new(DB)
 
     expect(database_records.access_records).to eq([])
+  end
+
+  it "inserts a record to the database" do
+    DB = Sequel.connect('mysql2://test-user:coolbeans@localhost:3306/test_database')
+    record = "Lady,Gaga,Singer"
+
+    database_records.write_to_records(record)
+
+    expect(database_records.access_records).to eq(
+    [{
+      first_name: 'Lady',
+      last_name: 'Gaga',
+      role: 'Singer',
+      end_of_employment: nil
+    }])
   end
 end
 
