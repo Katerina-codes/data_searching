@@ -10,12 +10,12 @@ class ProgramManager
   def user_flow
     if @ui.get_user_intention(@ui) == '1'
       search_criteria = @ui.get_search_criteria(@table)
-      record_data = @record_manager.access_records
+      record_data = @record_manager.access
       results = @data_searcher.get_matching_results(search_criteria, record_data)
       @ui.format_results(results)
     else
       record = @ui.get_user_record
-      @record_manager.write_to_records(record)
+      @record_manager.write_to(record)
     end
   end
 

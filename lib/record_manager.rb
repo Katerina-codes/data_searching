@@ -4,12 +4,12 @@ class RecordManager
     @file = file
   end
 
-  def access_records
+  def access
     records = File.open(@file, 'r')
     create_data_hash(records.read)
   end
 
-  def write_to_records(record)
+  def write_to(record)
     file = File.open(@file, 'a')
     file.puts(record)
   end

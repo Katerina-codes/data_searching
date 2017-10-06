@@ -4,16 +4,20 @@ class DatabaseRecords
     @database = database
   end
 
-  def access_records
+  def access
     @database[:employee].all
   end
 
-  def write_to_records(record)
+  def write_to(record)
     each_record_value = record.split(",")
-    @database[:employee].insert(first_name: each_record_value[0], last_name: each_record_value[1], role: each_record_value[2], end_of_employment: nil)
+    create_data_hash(each_record_value)
   end
 
-  def delete_all_records
+  def create_data_hash(records)
+    @database[:employee].insert(first_name: records[0], last_name: records[1], role: records[2], end_of_employment: nil)
+  end
+
+  def delete_all
     @database[:employee].delete
   end
 end
