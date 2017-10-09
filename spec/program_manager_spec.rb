@@ -25,18 +25,6 @@ RSpec.describe ProgramManager do
     program_manager.user_flow
   end
 
-  it 'goes through the whole flow' do
-    input = StringIO.new("1\n1\nx")
-    output = StringIO.new
-    ui_with_input = UI.new(output, input)
-    program_manager = ProgramManager.new(ui_with_input, DataSearcher.new, Table.new, RecordManager.new('spec/test_file.txt'))
-
-    program_manager.user_flow
-
-    expect(output.string).to include('Annie')
-    expect(output.string).to include('Lennox')
-  end
-
   it 'asks the user for their intention' do
     program_manager = program_manager_instance
     allow(ui).to receive(:get_search_criteria)
