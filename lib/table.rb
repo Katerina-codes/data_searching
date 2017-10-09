@@ -1,8 +1,8 @@
 class Table
 
   def is_input_valid?(input)
-    alphabet = ("a".."z").to_a.join
-    input.to_s.split("").all? do |character|
+    alphabet = ('a'..'z').to_a.join
+    input.to_s.split('').all? do |character|
       alphabet.include?(character)
     end
   end
@@ -13,7 +13,7 @@ class Table
 
   def get_user_intention(ui_instance)
     input = ui_instance.get_user_input
-    until input == "1" || input == "2"
+    until input == '1' || input == '2'
       ui_instance.ask_user_intention
       input = ui_instance.get_user_input
     end

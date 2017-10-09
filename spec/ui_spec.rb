@@ -10,8 +10,8 @@ RSpec.describe UI do
   end
 
   it 'gets input from the user' do
-    ui = create_ui(StringIO.new("Z"))
-    expect(ui.get_input).to eq("z")
+    ui = create_ui(StringIO.new('Z'))
+    expect(ui.get_input).to eq('z')
   end
 
   it "displays message when there's no results" do
@@ -28,7 +28,7 @@ RSpec.describe UI do
      Tou Xiong     |     Software Engineer     |    2016-10-05    |\n""")
   end
 
-  it "returns a prompt until user enters valid text" do
+  it 'returns a prompt until user enters valid text' do
     input = StringIO.new("1\n!\na")
     ui = create_ui(input)
     ui.get_search_criteria(Table.new)
@@ -36,33 +36,33 @@ RSpec.describe UI do
   end
 
   it "does not reject input if it's uppercase" do
-    input = StringIO.new("Dan")
+    input = StringIO.new('Dan')
     ui = create_ui(input)
-    expect(ui.get_valid_input(Table.new)).to eq("dan")
+    expect(ui.get_valid_input(Table.new)).to eq('dan')
   end
 
-  it "asks the user for a search type" do
+  it 'asks the user for a search type' do
     create_ui.ask_search_type
     expect(output.string).to eq("Please enter '1' to search by name or '2' to search by role:\n")
   end
 
-  it "gets input for search by name" do
+  it 'gets input for search by name' do
     input = StringIO.new("1\nalice")
     ui = create_ui(input)
     search_criteria = {
-      search_type: "name",
-      search_value: "alice"
+      search_type: 'name',
+      search_value: 'alice'
     }
 
     expect(ui.get_search_criteria(Table.new)).to eq(search_criteria)
   end
 
-  it "gets input for search by role" do
+  it 'gets input for search by role' do
     input = StringIO.new("2\nSinger")
     ui = create_ui(input)
     search_criteria = {
-      search_type: "role",
-      search_value: "singer"
+      search_type: 'role',
+      search_value: 'singer'
     }
 
     expect(ui.get_search_criteria(Table.new)).to eq(search_criteria)
@@ -75,14 +75,14 @@ RSpec.describe UI do
     expect(output.string).to include("Please enter '1' to search by name or '2' to search by role:\n")
   end
 
-  it "returns a valid search type" do
-    input = StringIO.new("1")
+  it 'returns a valid search type' do
+    input = StringIO.new('1')
     ui = create_ui(input)
     expect(ui.get_valid_search_type(Table.new)).to eq(1)
   end
 
   it "returns a valid search type if it's 2" do
-    input = StringIO.new("2")
+    input = StringIO.new('2')
     ui = create_ui(input)
     expect(ui.get_valid_search_type(Table.new)).to eq(2)
   end
@@ -107,7 +107,7 @@ RSpec.describe UI do
     expect(output.string).to eq("Please enter your separation date if applicable\n")
   end
 
-  it "gets user input and returns a user record" do
+  it 'gets user input and returns a user record' do
     input = StringIO.new("lady\ngaga\nsinger\nN/A")
     ui = create_ui(input)
     expect(ui.get_user_record).to eq("lady, gaga, singer, N/A")
@@ -119,21 +119,21 @@ RSpec.describe UI do
     expect(ui.get_user_record).to eq("lady, gaga, singer, N/A")
   end
 
-  it "asks user if they want to search or to add a record" do
+  it 'asks user if they want to search or to add a record' do
     create_ui.ask_user_intention
     expect(output.string).to eq("Please enter '1' to search the records and '2' to add a record\n")
   end
 
-  it "gets user intent to add a record" do
-    input = StringIO.new("2")
+  it 'gets user intent to add a record' do
+    input = StringIO.new('2')
     ui = create_ui(input)
-    expect(ui.get_user_intention(ui)).to eq("2")
+    expect(ui.get_user_intention(ui)).to eq('2')
   end
 
-  it "gets user intent to search records" do
-    input = StringIO.new("1")
+  it 'gets user intent to search records' do
+    input = StringIO.new('1')
     ui = create_ui(input)
-    expect(ui.get_user_intention(ui)).to eq("1")
+    expect(ui.get_user_intention(ui)).to eq('1')
   end
 
   def create_ui(input = StringIO.new)

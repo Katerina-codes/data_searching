@@ -8,7 +8,7 @@ class DataSearcher
 
   def find_matching_results(search_criteria, records)
     input = search_criteria[:search_value]
-    if search_criteria[:search_type] == "name"
+    if search_criteria[:search_type] == 'name'
       matching_records = records.select do |record|
         full_name = record[:first_name] + record[:last_name]
         field_includes_input?(full_name, input)

@@ -11,13 +11,13 @@ RSpec.describe RecordManager do
     it 'opens a file' do
       expect(File).to receive(:open).with(filepath, 'r').and_return(file_spy)
 
-      record_manager.access_records
+      record_manager.access
     end
 
     it 'reads a file' do
       expect(File).to receive(:open).with(filepath, 'r').and_return(file_spy)
 
-      record_manager.access_records
+      record_manager.access
 
       expect(file_spy).to have_received(:read)
     end
@@ -32,7 +32,7 @@ RSpec.describe RecordManager do
 
       set_up_file('annie,lennox,singer,N/A')
 
-      expect(record_manager.access_records).to eq(record)
+      expect(record_manager.access).to eq(record)
     end
 
     it 'dynamically creates a record with two lines of data' do
@@ -50,7 +50,7 @@ RSpec.describe RecordManager do
 
       set_up_file("annie,lennox,singer,N/A\nbob,marley,singer,N/A")
 
-      expect(record_manager.access_records).to eq(record)
+      expect(record_manager.access).to eq(record)
     end
 
     it 'dynamically creates a hash with three lines of data' do
@@ -73,7 +73,7 @@ RSpec.describe RecordManager do
 
       set_up_file("annie,lennox,singer,N/A\nbob,marley,singer,N/A\ncraig,david,superstar,N/A")
 
-      expect(record_manager.access_records).to eq(record)
+      expect(record_manager.access).to eq(record)
     end
 
     def set_up_file(file_content)
@@ -87,13 +87,13 @@ RSpec.describe RecordManager do
     it 'opens a file' do
       expect(File).to receive(:open).with(filepath, 'a').and_return(file_spy)
 
-      record_manager.write_to_records('record')
+      record_manager.write_to('record')
     end
 
     it 'appends to the end of a file' do
       expect(File).to receive(:open).with(filepath, 'a').and_return(file_spy)
 
-      record_manager.write_to_records('record')
+      record_manager.write_to('record')
 
       expect(file_spy).to have_received(:puts).with('record')
     end
