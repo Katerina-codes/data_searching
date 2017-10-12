@@ -10,13 +10,10 @@ RSpec.describe DatabaseRecords do
   end
 
   it "returns empty list when there is no records" do
-    DB = Sequel.connect('mysql2://test-user:coolbeans@localhost:3306/test_database')
-
     expect(database_records.access).to eq([])
   end
 
   it "inserts a record to the database" do
-    DB = Sequel.connect('mysql2://test-user:coolbeans@localhost:3306/test_database')
     record = "Lady,Gaga,Singer"
 
     database_records.write_to(record)
